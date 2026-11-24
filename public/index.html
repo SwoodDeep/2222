@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeBrain — анализ архитектуры проектов</title>
+<link rel="stylesheet" href="/css/app.css">
+<script type="importmap">
+{ "imports": { "three": "/vendor/three.module.js", "three/addons/controls/OrbitControls.js": "/vendor/OrbitControls.js" } }
+</script>
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand"><span class="logo">◈</span> CodeBrain</div>
+    <div class="project-bar">
+      <select id="project-select" title="Проект"></select>
+      <button id="btn-add-project" title="Добавить папку проекта">+ Проект</button>
+      <button id="btn-scan" class="primary" title="Запустить анализ (R)">Сканировать</button>
+      <button id="btn-cancel" title="Отменить сканирование" hidden>Стоп</button>
+      <span id="scan-status" class="muted"></span>
+    </div>
+    <nav id="view-tabs"></nav>
+    <div class="top-right">
+      <button id="btn-ai" title="AI-чат по проекту">AI</button>
+      <button id="btn-settings" title="Настройки">⚙</button>
+      <button id="btn-fullscreen" title="Полный экран">⛶</button>
+    </div>
+  </header>
+
+  <div id="main">
+    <aside id="left-panel" class="panel">
+      <div class="panel-head">
+        <input id="search-input" type="search" placeholder="Поиск: файлы, функции, роуты… (F)">
+        <div id="search-results" class="hidden"></div>
+      </div>
+      <div class="filter-row" id="category-filters"></div>
+      <div id="file-tree" class="tree-host"></div>
+      <div class="panel-foot muted" id="tree-stats"></div>
+    </aside>
+    <div class="resizer" id="res-left"></div>
+
+    <section id="center-panel">
+      <div id="view-toolbar">
+        <span id="view-title"></span>
+        <span class="spacer"></span>
+        <span id="graph-stats" class="muted"></span>
+        <button id="btn-2d3d" title="Переключить 2D/3D">3D</button>
+        <button id="btn-clusters" title="Агрегировать в кластеры">Кластеры</button>
+        <button id="btn-fit" title="Показать всё">⤢</button>
+      </div>
+      <div id="viewport"></div>
+      <div id="tooltip" class="hidden"></div>
+      <div id="progress-overlay" class="hidden">
+        <div class="progress-box">
+          <div id="progress-label">Сканирование…</div>
+          <div class="progress-track"><div id="progress-bar"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="resizer" id="res-right"></div>
+    <aside id="right-panel" class="panel">
+      <div id="inspector"><div class="empty muted">Выберите компонент в графе или дереве</div></div>
+    </aside>
+  </div>
+
+  <div class="resizer-h" id="res-bottom"></div>
+  <footer id="bottom-panel" class="collapsed">
+    <div id="bottom-tabs">
+      <button data-tab="logs" class="active">Логи</button>
+      <button data-tab="code">Код</button>
+      <button data-tab="diagnostics">Диагностика</button>
+      <button data-tab="ai">AI-чат</button>
+    </div>
+    <div id="bottom-content">
+      <div class="tab-page" id="tab-logs"></div>
+      <div class="tab-page hidden" id="tab-code"><pre><code id="code-view" class="hljs"></code></pre><div id="code-meta" class="muted"></div></div>
+      <div class="tab-page hidden" id="tab-diagnostics"></div>
+      <div class="tab-page hidden" id="tab-ai">
+        <div id="ai-messages"></div>
+        <div class="ai-input-row">
+          <input id="ai-input" type="text" placeholder="Спросите: как работает авторизация? где обрабатываются сообщения?…">
+          <button id="ai-send">➤</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div id="modal" class="hidden"><div id="modal-box"></div></div>
+
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>
