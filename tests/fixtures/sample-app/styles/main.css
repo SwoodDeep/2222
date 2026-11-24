@@ -1,0 +1,10 @@
+@import './theme.css';
+
+.app {
+  display: flex;
+  color: #333;
+}
+
+.app h1 {
+  font-size: 24px;
+}

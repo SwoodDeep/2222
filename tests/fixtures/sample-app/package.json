@@ -1,0 +1,16 @@
+{
+  "name": "sample-app",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js --watch"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "axios": "^1.7.0"
+  },
+  "devDependencies": {
+    "vitest": "^2.0.0"
+  }
+}
